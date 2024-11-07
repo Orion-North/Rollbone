@@ -7,20 +7,20 @@
 
 body {
     font-family: 'Pirata One', cursive;
-    background: url('bkg.png') no-repeat center center fixed;
+    background: url('images/bkg.png') no-repeat center center fixed;
     background-size: cover;
     color: #f3d19c;
     text-align: center;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    align-items: center;
     padding: 20px;
 }
 
 /* Enhance the main title */
 h1 {
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     font-size: 4em;
     color: #ffd700;
     text-shadow: 3px 3px #000000;
@@ -37,6 +37,64 @@ h1 {
     }
 }
 
+/* Authentication Container */
+#auth-container {
+    margin-bottom: 20px;
+}
+
+#auth-container button {
+    padding: 10px 20px;
+    background: #4285F4;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Pirata One', cursive;
+    font-size: 1em;
+    transition: background-color 0.3s;
+    margin: 5px;
+}
+
+#auth-container button:hover {
+    background-color: #357ae8;
+}
+
+#welcome-message {
+    margin-top: 10px;
+    font-size: 1.2em;
+    color: #ffeb3b;
+}
+
+/* Achievement Titles */
+#achievements {
+    background: rgba(0, 0, 0, 0.6);
+    border: 4px double #ffd700;
+    padding: 15px 25px;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 600px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
+}
+
+#achievements h2 {
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+#achievement-list {
+    list-style: none;
+    text-align: left;
+}
+
+#achievement-list li {
+    background: rgba(255, 215, 0, 0.2);
+    padding: 8px 12px;
+    margin: 5px 0;
+    border-radius: 5px;
+    color: #ffd700;
+}
+
 /* Treasure display container styling */
 #treasure-container {
     background: rgba(0, 0, 0, 0.6);
@@ -44,7 +102,7 @@ h1 {
     padding: 20px 30px;
     border-radius: 15px;
     width: max-content;
-    margin: 0 auto 40px auto;
+    margin: 0 auto 20px auto;
     box-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
     font-size: 2.5em;
     color: #ffd700;
@@ -52,13 +110,14 @@ h1 {
     overflow: hidden;
 }
 
+/* Adding decorative elements to treasure container */
 #treasure-container::before,
 #treasure-container::after {
     content: '';
     position: absolute;
     width: 100px;
     height: 100px;
-    background: url('coin.png') no-repeat center center;
+    background: url('images/coin.png') no-repeat center center;
     background-size: contain;
     opacity: 0.2;
 }
@@ -113,11 +172,17 @@ h1 {
     padding: 25px 20px;
     margin: 0 auto;
     width: 100%;
-    max-width: 400px;
+    max-width: 600px;
     border: 4px dashed #f3d19c;
     border-radius: 20px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.8);
     position: relative;
+    margin-bottom: 20px;
+}
+
+#game-container h2 {
+    font-size: 2em;
+    margin-bottom: 15px;
 }
 
 /* Adding decorative borders or icons */
@@ -127,7 +192,7 @@ h1 {
     position: absolute;
     width: 30px;
     height: 30px;
-    background: url('dice.png') no-repeat center center;
+    background: url('images/dice.png') no-repeat center center;
     background-size: contain;
     opacity: 0.1;
 }
@@ -146,12 +211,19 @@ h1 {
 label {
     display: block;
     font-size: 1.2em;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     color: #ffd700;
+    text-align: left;
 }
 
-input[type="number"] {
-    width: 80px;
+.bet-option {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+input[type="number"],
+select {
+    width: 100%;
     padding: 8px;
     border-radius: 8px;
     border: 2px solid #ffd700;
@@ -163,14 +235,15 @@ input[type="number"] {
     transition: border 0.3s, background 0.3s;
 }
 
-input[type="number"]:focus {
+input[type="number"]:focus,
+select:focus {
     border: 2px solid #ffae00;
     background: rgba(255, 255, 255, 0.2);
     outline: none;
 }
 
 button {
-    margin-top: 20px;
+    margin-top: 10px;
     padding: 12px 20px;
     background: #ffd700;
     color: #1a2a3a;
@@ -190,6 +263,7 @@ button:hover {
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.7);
 }
 
+/* Animation for result text */
 .fade-in {
     animation: fadeIn 0.7s ease-in-out;
 }
@@ -205,12 +279,60 @@ button:hover {
     }
 }
 
+/* Styling result text */
 #result {
     margin-top: 20px;
     font-size: 1.5em;
     color: #ffeb3b;
     min-height: 1.5em;
     transition: color 0.3s;
+}
+
+/* Leaderboard Styling */
+#leaderboard-container {
+    background: rgba(0, 0, 0, 0.6);
+    border: 4px double #ffd700;
+    padding: 15px 25px;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 600px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
+}
+
+#leaderboard-container h2 {
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+#leaderboard {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 auto;
+}
+
+#leaderboard th,
+#leaderboard td {
+    border: 1px solid #ffd700;
+    padding: 8px;
+    color: #ffd700;
+}
+
+#leaderboard th {
+    background: rgba(255, 215, 0, 0.3);
+}
+
+#leaderboard tbody tr:nth-child(even) {
+    background: rgba(255, 215, 0, 0.1);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    #game-container,
+    #achievements,
+    #leaderboard-container {
+        max-width: 90%;
+    }
 }
 
 @media (max-width: 480px) {
@@ -231,11 +353,22 @@ button:hover {
         padding: 20px 15px;
     }
 
-    label, input[type="number"], button, #result {
+    #achievements h2,
+    #game-container h2,
+    #leaderboard-container h2 {
+        font-size: 1.5em;
+    }
+
+    label, input[type="number"], select, button, #result {
         font-size: 1em;
     }
 
     button {
         padding: 10px 18px;
+    }
+
+    #leaderboard th,
+    #leaderboard td {
+        padding: 6px;
     }
 }
