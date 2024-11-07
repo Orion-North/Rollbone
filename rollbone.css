@@ -1,0 +1,114 @@
+body {
+    font-family: 'Pirata One', cursive;
+    background: url('bkg.png') no-repeat center center fixed;
+    background-size: cover;
+    color: #f3d19c;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    margin-top: 20px;
+    font-size: 3em;
+    color: #f3d19c;
+    text-shadow: 2px 2px #000000;
+}
+
+/* Treasure display styling */
+#treasure {
+    font-size: 2.5em;
+    color: #ffd700;
+    font-weight: bold;
+    text-shadow: 0 0 8px #ffd700, 0 0 12px #ffc107, 0 0 16px #ff9800;
+    margin-bottom: 15px;
+    display: inline-block;
+    animation: glowPulse 1s ease-in-out infinite alternate;
+}
+
+/* Glow pulse animation for treasure */
+@keyframes glowPulse {
+    from {
+        text-shadow: 0 0 8px #ffd700, 0 0 12px #ffc107, 0 0 16px #ff9800;
+    }
+    to {
+        text-shadow: 0 0 16px #ffd700, 0 0 24px #ffc107, 0 0 32px #ff9800;
+    }
+}
+
+#game-container {
+    background: rgba(26, 42, 58, 0.8);
+    padding: 20px;
+    margin: 30px auto;
+    width: 320px;
+    border: 2px solid #f3d19c;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
+}
+
+/* Input and button styling */
+label {
+    font-weight: bold;
+}
+
+input[type="number"] {
+    width: 60px;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-family: 'Pirata One', cursive;
+}
+
+button {
+    margin-top: 15px;
+    padding: 10px 15px;
+    background: #f3d19c;
+    color: #1a2a3a;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    font-family: 'Pirata One', cursive;
+    transition: transform 0.2s;
+}
+
+button:hover {
+    background: #d1b17a;
+    transform: scale(1.05);
+}
+
+/* Animation for result text */
+.fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Styling result text */
+#result {
+    margin-top: 15px;
+    font-size: 1.2em;
+}
+
+.pulse {
+    animation: pulseEffect 0.3s ease-in-out infinite;
+}
+
+@keyframes pulseEffect {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
