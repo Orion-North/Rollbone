@@ -1,114 +1,245 @@
+/* Reset default browser styles for consistency */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
     font-family: 'Pirata One', cursive;
     background: url('bkg.png') no-repeat center center fixed;
     background-size: cover;
     color: #f3d19c;
     text-align: center;
-    margin: 0;
-    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
 }
 
+/* Enhance the main title */
 h1 {
-    margin-top: 20px;
-    font-size: 3em;
-    color: #f3d19c;
-    text-shadow: 2px 2px #000000;
-}
-
-/* Treasure display styling */
-#treasure {
-    font-size: 2.5em;
+    margin-bottom: 30px;
+    font-size: 4em;
     color: #ffd700;
-    font-weight: bold;
-    text-shadow: 0 0 8px #ffd700, 0 0 12px #ffc107, 0 0 16px #ff9800;
-    margin-bottom: 15px;
-    display: inline-block;
-    animation: glowPulse 1s ease-in-out infinite alternate;
+    text-shadow: 3px 3px #000000;
+    animation: titleGlow 2s infinite alternate;
 }
 
-/* Glow pulse animation for treasure */
-@keyframes glowPulse {
+/* Animation for title glow effect */
+@keyframes titleGlow {
     from {
-        text-shadow: 0 0 8px #ffd700, 0 0 12px #ffc107, 0 0 16px #ff9800;
+        text-shadow: 3px 3px #000000, 0 0 10px #ffd700;
     }
     to {
-        text-shadow: 0 0 16px #ffd700, 0 0 24px #ffc107, 0 0 32px #ff9800;
+        text-shadow: 3px 3px #000000, 0 0 20px #ffae00;
     }
 }
 
+/* Treasure display container styling */
+#treasure-container {
+    background: rgba(0, 0, 0, 0.6);
+    border: 4px double #ffd700;
+    padding: 20px 30px;
+    border-radius: 15px;
+    width: max-content;
+    margin: 0 auto 40px auto;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
+    font-size: 2.5em;
+    color: #ffd700;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Adding decorative elements to treasure container */
+#treasure-container::before,
+#treasure-container::after {
+    content: '';
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background: url('coin.png') no-repeat center center;
+    background-size: contain;
+    opacity: 0.2;
+}
+
+#treasure-container::before {
+    top: -20px;
+    left: -20px;
+    transform: rotate(45deg);
+}
+
+#treasure-container::after {
+    bottom: -20px;
+    right: -20px;
+    transform: rotate(-45deg);
+}
+
+#treasure {
+    font-size: 3em;
+    font-weight: bold;
+    /* Reduced text-shadow for a subtler glow */
+    text-shadow: 0 0 5px #ffd700, 0 0 7px #ffc107;
+    /* Adjusted animations for subtlety */
+    animation: glowPulse 2s ease-in-out infinite alternate, subtlePulse 4s ease-in-out infinite;
+}
+
+/* Subtler glowPulse animation */
+@keyframes glowPulse {
+    from {
+        text-shadow: 0 0 5px #ffd700, 0 0 7px #ffc107;
+    }
+    to {
+        text-shadow: 0 0 10px #ffd700, 0 0 14px #ffc107;
+    }
+}
+
+/* Subtle pulse effect for #treasure */
+@keyframes subtlePulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.03);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Game container styling */
 #game-container {
-    background: rgba(26, 42, 58, 0.8);
-    padding: 20px;
-    margin: 30px auto;
-    width: 320px;
-    border: 2px solid #f3d19c;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
+    background: rgba(26, 42, 58, 0.9);
+    padding: 25px 20px;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 400px;
+    border: 4px dashed #f3d19c;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.8);
+    position: relative;
+}
+
+/* Adding decorative borders or icons */
+#game-container::before,
+#game-container::after {
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background: url('dice.png') no-repeat center center;
+    background-size: contain;
+    opacity: 0.1;
+}
+
+#game-container::before {
+    top: -15px;
+    left: -15px;
+}
+
+#game-container::after {
+    bottom: -15px;
+    right: -15px;
 }
 
 /* Input and button styling */
 label {
-    font-weight: bold;
+    display: block;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    color: #ffd700;
 }
 
 input[type="number"] {
-    width: 60px;
-    padding: 5px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
+    width: 80px;
+    padding: 8px;
+    border-radius: 8px;
+    border: 2px solid #ffd700;
     font-family: 'Pirata One', cursive;
+    font-size: 1em;
+    background: rgba(255, 255, 255, 0.1);
+    color: #f3d19c;
+    text-align: center;
+    transition: border 0.3s, background 0.3s;
+}
+
+input[type="number"]:focus {
+    border: 2px solid #ffae00;
+    background: rgba(255, 255, 255, 0.2);
+    outline: none;
 }
 
 button {
-    margin-top: 15px;
-    padding: 10px 15px;
-    background: #f3d19c;
+    margin-top: 20px;
+    padding: 12px 20px;
+    background: #ffd700;
     color: #1a2a3a;
-    border: none;
-    border-radius: 5px;
+    border: 2px solid #b8860b;
+    border-radius: 10px;
     cursor: pointer;
     font-weight: bold;
     font-family: 'Pirata One', cursive;
-    transition: transform 0.2s;
+    font-size: 1em;
+    transition: transform 0.3s, background-color 0.3s, box-shadow 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 }
 
 button:hover {
-    background: #d1b17a;
-    transform: scale(1.05);
+    background: #ffae00;
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.7);
 }
 
 /* Animation for result text */
 .fade-in {
-    animation: fadeIn 0.5s ease-in-out;
+    animation: fadeIn 0.7s ease-in-out;
 }
 
 @keyframes fadeIn {
     from {
         opacity: 0;
+        transform: translateY(-10px);
     }
     to {
         opacity: 1;
+        transform: translateY(0);
     }
 }
 
 /* Styling result text */
 #result {
-    margin-top: 15px;
-    font-size: 1.2em;
+    margin-top: 20px;
+    font-size: 1.5em;
+    color: #ffeb3b;
+    min-height: 1.5em;
+    transition: color 0.3s;
 }
 
-.pulse {
-    animation: pulseEffect 0.3s ease-in-out infinite;
-}
+/* Responsive Design */
+@media (max-width: 480px) {
+    h1 {
+        font-size: 3em;
+    }
 
-@keyframes pulseEffect {
-    0% {
-        transform: scale(1);
+    #treasure-container {
+        padding: 15px 20px;
+        font-size: 2em;
     }
-    50% {
-        transform: scale(1.1);
+
+    #treasure {
+        font-size: 2.2em;
     }
-    100% {
-        transform: scale(1);
+
+    #game-container {
+        padding: 20px 15px;
+    }
+
+    label, input[type="number"], button, #result {
+        font-size: 1em;
+    }
+
+    button {
+        padding: 10px 18px;
     }
 }
