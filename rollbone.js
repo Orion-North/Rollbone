@@ -48,6 +48,7 @@ googleSignInBtn.addEventListener('click', () => {
         .then((result) => {
             // Signed in
             currentUser = result.user;
+            console.log("User signed in:", currentUser.displayName);
             welcomeMessage.style.display = 'block';
             userNameSpan.textContent = currentUser.displayName;
             googleSignInBtn.style.display = 'none';
@@ -64,6 +65,7 @@ signOutBtn.addEventListener('click', () => {
     auth.signOut().then(() => {
         // Signed out
         currentUser = null;
+        console.log("User signed out.");
         welcomeMessage.style.display = 'none';
         googleSignInBtn.style.display = 'inline-block';
         signOutBtn.style.display = 'none';
@@ -77,6 +79,7 @@ signOutBtn.addEventListener('click', () => {
 auth.onAuthStateChanged(user => {
     if (user) {
         currentUser = user;
+        console.log("Auth state changed: User is signed in.");
         welcomeMessage.style.display = 'block';
         userNameSpan.textContent = user.displayName;
         googleSignInBtn.style.display = 'none';
@@ -85,6 +88,7 @@ auth.onAuthStateChanged(user => {
         loadLeaderboard();
     } else {
         currentUser = null;
+        console.log("Auth state changed: No user is signed in.");
         welcomeMessage.style.display = 'none';
         googleSignInBtn.style.display = 'inline-block';
         signOutBtn.style.display = 'none';
@@ -101,11 +105,14 @@ function loadUserData() {
                 treasure = data.gold;
                 treasureElement.innerText = `${treasure} gold`;
                 displayAchievements(data.achievements);
+                console.log("User data loaded:", data);
             } else {
                 // New user, set initial data
                 userDoc.set({
                     gold: treasure,
                     achievements: []
+                }).then(() => {
+                    console.log("New user data initialized.");
                 });
             }
         }).catch(error => {
@@ -121,7 +128,11 @@ function saveUserData() {
         userDoc.set({
             gold: treasure,
             achievements: getAchievedTitles()
-        }, { merge: true });
+        }, { merge: true }).then(() => {
+            console.log("User data saved.");
+        }).catch(error => {
+            console.error("Error saving user data:", error);
+        });
     }
 }
 
@@ -133,6 +144,7 @@ function displayAchievements(userAchievements) {
         li.textContent = title;
         achievementList.appendChild(li);
     });
+    console.log("Achievements displayed:", userAchievements);
 }
 
 // Get Achieved Titles
@@ -159,6 +171,7 @@ function loadLeaderboard() {
                 leaderboardBody.appendChild(tr);
                 rank++;
             });
+            console.log("Leaderboard loaded.");
         })
         .catch(error => {
             console.error("Error loading leaderboard:", error);
@@ -191,6 +204,7 @@ betTypeSelect.addEventListener('change', () => {
             </select>
         `;
     }
+    console.log(`Bet type changed to: ${betType}`);
 });
 
 // Roll Dice Handler
@@ -289,6 +303,8 @@ rollDiceBtn.addEventListener('click', () => {
 
     // Update Fade-in Animation
     triggerFadeIn(resultElement);
+
+    console.log(`Rolls: ${rolls.join(', ')}, Total Sum: ${totalSum}, Outcome: ${outcome}`);
 });
 
 // Check and Award Achievements
@@ -310,6 +326,7 @@ function checkAchievements() {
                         achievements: userAchievements
                     });
                     alert(`🏆 Achievement Unlocked: ${ach.title}`);
+                    console.log(`Achievement unlocked: ${ach.title}`);
                 }
             });
         }
@@ -333,6 +350,7 @@ function updateLeaderboard() {
         displayName: currentUser.displayName
     }, { merge: true }).then(() => {
         loadLeaderboard();
+        console.log("Leaderboard updated.");
     }).catch(error => {
         console.error("Error updating leaderboard:", error);
     });
@@ -344,6 +362,7 @@ function triggerFadeIn(element) {
     // Trigger reflow to restart the animation
     void element.offsetWidth;
     element.classList.add('fade-in');
+    console.log("Fade-in animation triggered.");
 }
 
 // Reset Game
@@ -357,7 +376,9 @@ function resetGame() {
         userDoc.set({
             gold: treasure,
             achievements: []
-        }, { merge: true });
+        }, { merge: true }).then(() => {
+            console.log("Game reset for user.");
+        });
     }
 }
 
