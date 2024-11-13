@@ -1,8 +1,9 @@
 # Rollbone
 Rollbone is a simple, engaging web-based dice-rolling game where players bet gold and roll a dice to win or lose based on the outcome. Designed with a pirate-themed aesthetic, Rollbone offers an intuitive interface and dynamic visual effects to enhance the gaming experience.
 
+![Screenshot 2024-11-13 134731](https://github.com/user-attachments/assets/483c9d8d-ca0e-46c0-bf3d-5f730621a6d1)
 ## Play Now
-You can play a demo of rollbone now at:
+You can play a demo of rollbone now at: https://orion-north.github.io/Rollbone/
 ## Description
 Rollbone is a straightforward dice game where players start with a certain amount of gold and place bets on each roll of the dice. The goal is to accumulate as much gold as possible by rolling favorable numbers while avoiding losses. The game incorporates subtle animations and a pirate-themed design to create an immersive and enjoyable experience.
 
